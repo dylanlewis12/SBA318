@@ -4,8 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Finder</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="../styles/home.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <div id="navbar">
+        <ul>
+            <li><a href="./home.html"></a>🎬MovieFinder</li>
+            <li><a href=".movie-catalog">Catalog</a></li>
+            <li><a href="./view/watchlist.html">Watch List</a></li>
+            <li><a href="./views/about.html">About</a></li>
+        </ul>
+    </div>
+
+    <section class="hero">
+        <h1>Welcome to MovieFinder</h1>
+        <p>
+            Discover new movies, explore trending titles, and build your personal watchlist — all in one place.
+        </p>
+        <p>
+            Search thousands of films, view details like genres and ratings, and keep track of what you want to watch next.
+        </p>
+        <p>
+            Ready to find your next favorite movie?
+        </p>
+    </section>
+
+    <div class="movie-catalog">
+        <!-- Card container for search results -->
+        <div class="catalog-container">
+
+        </div>
+        
+    </div>
+
+    <script src="../database/database.mjs"></script>
 </body>
 </html>
+
