@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <form action="/api/todos" method="POST">
+      <fieldset>
+        <legend><h2>Add Todo</h2></legend>
+        <input type="text" name="todo" id="todo" placeholder="Todo..."/><br />
+        <label
+          >Category:
+          <select name="category" id="category">
+            <option value="household">Household</option>
+            <option value="yard">Yard</option>
+            <option value="pet">Pet</option>
+            <option value="grocery">Grocery</option></select
+          ><br />
+        </label>
+        <input type="submit" value="Submit" />
+      </fieldset>
+    </form>
+
+    <ul>#list#</ul>
+  </body>
+</html>
