@@ -59,19 +59,18 @@ router
     }
   })
   .delete((req, res) => {
-    let id = req.params.id;
+    let movieId = req.params.movieId;
 
-    let deletedTodo = db.find((todo, i) => {
-      if (todo.id == id) {
-        return db.splice(i, 1);
-      }
-    });
+    let movieIndex = db.findIndex((movie) => movie.movieId == movieId);
 
-    if (deletedTodo) {
-      res.json({ deletedTodo });
-    } else {
-      res.status(400).json({ error: "Could not find todo!" });
+    // -1 means movie does not exist in the watch list
+    if (movieIndex == -1) {
+      res.status(404).json({error: "Movie not found!"});
     }
+
+    let deletedMovie = db.splice(movieIndex, 1)[0];
+
+    res.json({ message: "Movie deleted", deletedMovie });
   });
 
 // Filter Route /api/watchlist/:genre/category
@@ -84,8 +83,8 @@ router.route("/:genre").get((req, res) => {
   }
 
   // Returns an array of all elements that match a condition
+  // Use .includes to check values of genres array
   let filteredData = db.filter((movie) => movie.genres.includes(genre));
-
   res.json({ filteredData });
 });
 
