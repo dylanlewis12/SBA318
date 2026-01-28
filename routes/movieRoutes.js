@@ -15,7 +15,6 @@ router
     if(isAdded) {
       return res.status(400).json({error: "Movie already added to watchlist"});  
     }
-    
    
     try {
       let newMovie = {
@@ -24,6 +23,7 @@ router
         rating,
         genres,
         image,
+        myRating: null,
         watched: false,
         addedDate: new Date(),
       };
@@ -43,29 +43,37 @@ router
   .put((req, res) => {
     let id = req.params.id;
 
-    let watchlist = db.find((item) => {
-      if (item.id == id) {
-        for (let key in req.body) {
-          todo[key] = req.body[key];
-        }
-        return true;
-      }
-    });
+    let updatedMovie = db.find((movie) => movie.movieId == id);
 
-    if (updatedTodo) {
-      res.json({ updatedTodo });
-    } else {
-      res.status(400).json({ error: "Could not find todo!" });
+    if(!updatedMovie) {
+      return res.status(404).json({error: "Could not find movie!"});
     }
+
+    try {
+      //Check if the correct fields are being updated (watched or myRating)
+      if(req.body.watched !== undefined) {
+          updatedMovie.watched = req.body.watched;
+      }
+
+      if(req.body.myRating !== undefined) {
+          updatedMovie.myRating = req.body.myRating;
+      }
+
+
+      res.json({ message: "Movie updated", updatedMovie });
+    } catch(error) {
+      res.status(500).json({ error: error.message }); 
+    }
+
   })
   .delete((req, res) => {
-    let movieId = req.params.movieId;
+    let movieId = req.params.id;
 
     let movieIndex = db.findIndex((movie) => movie.movieId == movieId);
 
     // -1 means movie does not exist in the watch list
     if (movieIndex == -1) {
-      res.status(404).json({error: "Movie not found!"});
+      return res.status(404).json({error: "Movie not found!"});
     }
 
     let deletedMovie = db.splice(movieIndex, 1)[0];
@@ -73,9 +81,8 @@ router
     res.json({ message: "Movie deleted", deletedMovie });
   });
 
-// Filter Route /api/watchlist/:genre/category
-
-router.route("/:genre").get((req, res) => {
+// Filter Route /api/watchlist/filter/:genre
+router.route("/filter/:genre").get((req, res) => {
   let genre = req.params.genre;
 
   if (!genre) {
