@@ -1,6 +1,6 @@
 // Imports
 import express from "express";
-import todoRoutes from "./routes/todoRoutes.js";
+import movieRoutes from "./routes/movieRoutes.js";
 import { logReq, globalErr } from "./middleware/middlewares.js";
 import db from "./database/database.js";
 import fs from "fs";
@@ -41,7 +41,7 @@ app.get("/home", (req, res) => {
   res.render("index");
 });
 
-app.use("/api/todos", todoRoutes);
+app.use("/api/todos", movieRoutes);
 
 // Global Err handling middleware
 app.use(globalErr);
