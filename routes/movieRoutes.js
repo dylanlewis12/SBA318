@@ -7,7 +7,7 @@ router
   .route("/")
   // Create
   .post((req, res) => {
-    const { movieId, movieName, rating, genres, image } = req.body;
+    const { movieId, movieName, rating, genres, image, summary } = req.body;
     
     // Error handling - checking if movie is already on watchlist
     const isAdded = db.find(m => m.movieId === movieId);  
@@ -23,9 +23,10 @@ router
         rating,
         genres,
         image,
+        summary,
         myRating: null,
         watched: false,
-        addedDate: new Date(),
+        addedDate: new Date()
       };
       db.push(newMovie);
       res.status(201).json({ message: "Added to watchlist!", movie: newMovie });  
@@ -60,7 +61,7 @@ router
       }
 
 
-      res.json({ message: "Movie updated", updatedMovie });
+      res.status().json({ message: "Movie updated", updatedMovie });
     } catch(error) {
       res.status(500).json({ error: error.message }); 
     }

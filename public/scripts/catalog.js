@@ -1,4 +1,4 @@
-import { loadMovies } from '../../data/movieData.js';
+import { loadMovies } from '../data/movieData.js';
 
 let allMovies = [];
 let currentPage = 1;
@@ -146,6 +146,52 @@ function updatePagination(totalMovies) {
     });
     paginationContainer.appendChild(nextBtn);
 }
+
+async function handleAddList(event) {
+    if (event.target.classList.contains('add-to-watchlist')) {
+            const movieId = event.target.getAttribute('data-movie-id');
+            const card = event.target.closest('.card');
+
+            const movieName = card.querySelector('#movieName').textContent;
+            const movieSummary = card.querySelector('#movieSummary').textContent;
+            const movieRating = card.querySelector('#movieRating').textContent;
+            const movieImage = card.querySelector('.card-image img').src;
+
+            const movieGenres = Array.from(card.querySelectorAll('.genre-tag'))
+            .map(tag => tag.textContent);
+
+        try {
+            const data = {
+                movieId,
+                movieName,
+                movieRating,
+                movieGenres,
+                movieImage,
+                movieSummary
+
+            };
+            const response = await axios.post('/api/watchlist', data);
+            console.log(response.data);
+            
+            if (response.status === 201) {
+                console.log('Request was successful and status is OK');
+                //Disable add button for selected card after post
+                alert(`${movieName} was added to your watchlist✅!`);
+                event.target.disabled = true;
+                event.target.textContent = 'Added ✓';
+            } else if (response.status === 400) {
+                console.log('Error: An item with this id already exists in your database❌.');
+                alert(`This movie is already in your watch list. Try again.`);
+            } else {
+                alert(`An error occured while trying to the movie to your watchlist.`);
+            }
+
+        } catch(error) {
+            console.error('Error adding to watchlist:', error);
+        }
+    }
+}
+document.addEventListener('click',handleAddList)
 
 viewCatalog();
 

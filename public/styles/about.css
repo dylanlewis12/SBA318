@@ -79,6 +79,18 @@ ul li:first-child {
     position: static;
 }
 
+ul li:first-child a {
+    pointer-events: none;
+    cursor: default;
+}
+
+ul li:first-child a:hover {
+    background-color: transparent;
+    color: #FFCB05;
+    border-bottom: none;
+    transform: none;
+}
+
 ul li {
     height: 100%;
     display: flex;

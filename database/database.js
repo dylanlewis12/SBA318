@@ -1,1 +1,3 @@
-export default watchlist = [];
+let watchlist = [];
+
+export default watchlist;

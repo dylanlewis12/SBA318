@@ -1,29 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-  </head>
-  <body>
-    <form action="/api/todos" method="POST">
-      <fieldset>
-        <legend><h2>Add Todo</h2></legend>
-        <input type="text" name="todo" id="todo" placeholder="Todo..."/><br />
-        <label
-          >Category:
-          <select name="category" id="category">
-            <option value="household">Household</option>
-            <option value="yard">Yard</option>
-            <option value="pet">Pet</option>
-            <option value="grocery">Grocery</option></select
-          ><br />
-        </label>
-        <input type="submit" value="Submit" />
-      </fieldset>
-    </form>
 
-    <ul>#list#</ul>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Finder</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="/styles/index.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Sora:wght@400;500;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="navbar">
+        <ul>
+            <li><a href="/" style="color: #FFCB05;">🎬MovieFinder</a></li>
+            <li><a href="#catalog">Catalog</a></li>
+            <li><a href="/watchlist">Watchlist</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </div>
+    <section class="hero">
+        <h1>Welcome to MovieFinder</h1>
+        <p>
+            Discover new movies, explore trending titles, and build your personal watchlist — all in one place.
+        </p>
+        <p>
+            Search thousands of films, view details like genres and ratings, and keep track of what you want to watch
+            next.
+        </p>
+        <p>
+            Ready to find your next favorite movie?
+        </p>
+    </section>
+    <div class="movie-catalog" id="catalog">
+        <!-- Card container for search results -->
+        <div class="catalog-container">
+        </div>
+    </div>
+    <div class="pagination"></div>
+    <script type="module" src="/scripts/catalog.js"></script>
+</body>
+
 </html>

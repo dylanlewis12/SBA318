@@ -1,25 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Watchlist</title>
-    <link href="../styles/watchlist.css" rel="stylesheet">
+    <title>My Watchlist-MovieFinder</title>
+    <link href="/styles/watchlist.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Sora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Sora:wght@400;500;600&display=swap"
+        rel="stylesheet">
 </head>
-<body>
-    <div id="navbar">
-        <ul>
-            <li><a href="./home.html"></a>🎬MovieFinder</li>
-            <li><a href="#catalog">Catalog</a></li>
-            <li><a href="./watchlist.html">Watchlist</a></li>
-            <li><a href="./about.html">About</a></li>
-        </ul>
-    </div>
 
-    <script type="module" src="../scripts/watchlist.js"></script>
+<body>
+    <nav id="navbar">
+        <ul>
+            <li id="title" style="color: #FFCB05;"><a href="/">🎬 MovieFinder</a></li>
+            <li><a href="/#catalog">Catalog</a></li>
+            <li><a href="/watchlist">Watch List</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    <div class="watchlist-container">
+        <h2>My Watchlist</h2>
+        <div id="watchlist-items">
+            #watchlist#
+        </div>
+    </div>
+    <script src="/scripts/watchlist-events.js"></script>
 </body>
+
 </html>

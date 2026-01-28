@@ -32,15 +32,6 @@ body {
     position: relative;
 }
 
-h2 {
-    font-size: 80px;
-    text-align: center;
-    color: #FFCB05;
-    margin: 20px 0;
-    flex-shrink: 0;
-    font-family: "Rubik Glitch", system-ui;
-}
-
 .hero {
     padding: 3rem 2rem;
     text-align: center;
@@ -129,6 +120,7 @@ ul li a:hover {
     transform: scale(1.05);
 }
 
+/* Movie Catalog Container */
 .movie-catalog {
     width: 90%;
     max-width: 1450px;
