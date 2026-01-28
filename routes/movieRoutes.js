@@ -3,26 +3,21 @@ import db from "../database/database.js";
 
 const router = express.Router();
 
-// Array to store watchlist
-//let watchlist = [];
-
 router
   .route("/")
   // Create
   .post((req, res) => {
     const { movieId, movieName, rating, genres, image } = req.body;
-
-    //Error handling - checking if movie is already on watch list
-    const isAdded = db.find(m => m.movieId => movieId);
-
+    
+    // Error handling - checking if movie is already on watchlist
+    const isAdded = db.find(m => m.movieId === movieId);  
+    
     if(isAdded) {
-      res.status(400).json({error: "Movie already added to watchlist"});
+      return res.status(400).json({error: "Movie already added to watchlist"});  
     }
-
-    // Error handling
-
+    
+   
     try {
-
       let newMovie = {
         movieId,
         movieName,
@@ -31,12 +26,11 @@ router
         image,
         watched: false,
         addedDate: new Date(),
-      }
-
+      };
       db.push(newMovie);
-      res.redirect("/home");
+      res.status(201).json({ message: "Added to watchlist!", movie: newMovie });  
     } catch(error) {
-      
+      res.status(500).json({ error: error.message });  
     }
   })
   // Read
@@ -80,16 +74,20 @@ router
     }
   });
 
-// Filter Route /api/todos/:cat/category
-router.route("/:cat/category").get((req, res) => {
-  let category = req.params.cat;
+// Filter Route /api/watchlist/:genre/category
+
+router.route("/:genre").get((req, res) => {
+  let genre = req.params.genre;
+
+  if (!genre) {
+    return res.status(400).json({ error: "Genre parameter required" });
+  }
 
   // Returns an array of all elements that match a condition
-  let filteredData = db.filter((todo) => todo.category == category);
+  let filteredData = db.filter((movie) => movie.genres.includes(genre));
 
   res.json({ filteredData });
 });
 
-router.rout
 
 export default router;
