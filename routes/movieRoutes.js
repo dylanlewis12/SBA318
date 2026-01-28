@@ -3,33 +3,40 @@ import db from "../database/database.js";
 
 const router = express.Router();
 
+// Array to store watchlist
+//let watchlist = [];
+
 router
   .route("/")
   // Create
   .post((req, res) => {
-    let { category, todo } = req.body;
+    const { movieId, movieName, rating, genres, image } = req.body;
+
+    //Error handling - checking if movie is already on watch list
+    const isAdded = db.find(m => m.movieId => movieId);
+
+    if(isAdded) {
+      res.status(400).json({error: "Movie already added to watchlist"});
+    }
 
     // Error handling
-    if (category && todo) {
-      let id;
 
-      if (db.length == 0) {
-        // If db is empty
-        id = 1;
-      } else {
-        id = db[db.length - 1].id + 1;
+    try {
+
+      let newMovie = {
+        movieId,
+        movieName,
+        rating,
+        genres,
+        image,
+        watched: false,
+        addedDate: new Date(),
       }
 
-      let newTodo = {
-        id: id,
-        category,
-        todo,
-      };
-
-      db.push(newTodo);
+      db.push(newMovie);
       res.redirect("/home");
-    } else {
-      res.status(400).json({ error: "Insufficient Data" });
+    } catch(error) {
+      
     }
   })
   // Read
@@ -42,8 +49,8 @@ router
   .put((req, res) => {
     let id = req.params.id;
 
-    let updatedTodo = db.find((todo) => {
-      if (todo.id == id) {
+    let watchlist = db.find((item) => {
+      if (item.id == id) {
         for (let key in req.body) {
           todo[key] = req.body[key];
         }
@@ -82,5 +89,7 @@ router.route("/:cat/category").get((req, res) => {
 
   res.json({ filteredData });
 });
+
+router.rout
 
 export default router;

@@ -1,2 +1,1 @@
-let movieData = [];
-
+export default watchlist = [];

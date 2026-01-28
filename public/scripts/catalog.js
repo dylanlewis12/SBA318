@@ -1,4 +1,4 @@
-import { loadMovies } from '../data/movieData.js';
+import { loadMovies } from '../../data/movieData.js';
 
 let allMovies = [];
 let currentPage = 1;

@@ -41,7 +41,7 @@ app.get("/home", (req, res) => {
   res.render("index");
 });
 
-app.use("/api/todos", movieRoutes);
+app.use("/api/watchlist", movieRoutes);
 
 // Global Err handling middleware
 app.use(globalErr);
