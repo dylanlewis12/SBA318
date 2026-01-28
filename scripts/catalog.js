@@ -1,4 +1,4 @@
-import { loadMovies } from '../data/movieData.mjs';
+import { loadMovies } from '../data/movieData.js';
 
 let allMovies = [];
 let currentPage = 1;
@@ -17,11 +17,11 @@ function displayPage(pageNum) {
     const end = start + moviesPerPage;
     const pageMovies = allMovies.slice(start, end); //Extracts 20 movies for that page
     
-    renderMovieCards(pageMovies); //Displays those 20 movie cards
+    createMovieCards(pageMovies); //Displays those 20 movie cards
     updatePagination(allMovies.length); //Updates page button (1, 2, 3, etc.)
 }
 
-function renderMovieCards(movies) {
+function createMovieCards(movies) {
     // Render cards to .catalog-container
     const genreColors = {
         'Drama': '#E74C3C',
@@ -89,6 +89,64 @@ function renderMovieCards(movies) {
 }
 
 function updatePagination(totalMovies) {
+    const totalPages = Math.ceil(totalMovies / moviesPerPage);
+    const paginationContainer = document.querySelector('.pagination');
     
+    paginationContainer.innerHTML = ''; // Clear previous buttons
+    
+    // Previous button
+    const prevBtn = document.createElement('button');
+    prevBtn.textContent = 'Previous';
+
+    //Disable previous page button if user is on the first page
+    if(currentPage === 1) {
+        prevBtn.disabled = true;
+    }
+
+    prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            displayPage(currentPage);
+        }
+    });
+    paginationContainer.appendChild(prevBtn);
+    
+    // Page number buttons
+    for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.textContent = i;
+        pageBtn.className = 'pagination-number';
+        
+        if (i === currentPage) {
+            pageBtn.classList.add('active');
+        }
+        
+        pageBtn.addEventListener('click', () => {
+            currentPage = i;
+            displayPage(currentPage);
+        });
+        
+        paginationContainer.appendChild(pageBtn);
+    }
+    
+    // Next button
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = 'Next';
+    
+    //Disable previous next button if user is on the last page
+    if(currentPage === totalPages) {
+        nextBtn.disabled = true;
+    }
+
+    nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayPage(currentPage);
+        }
+    });
+    paginationContainer.appendChild(nextBtn);
 }
+
 viewCatalog();
+
+export {updatePagination, displayPage, createMovieCards };
