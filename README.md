@@ -33,8 +33,8 @@ A full-stack web application that helps you discover, track, and rate TV shows.
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/moviefinder.git
-cd moviefinder
+git clone https://github.com/dylanlewis12/SBA318.git
+cd SBA318
 ```
 
 2. Install dependencies
@@ -66,7 +66,7 @@ npm run dev
 ## Project Structure
 
 ```
-moviefinder/
+SBA318/
 ├── server.js                 # Express server
 ├── public/
 │   ├── views/               # HTML files
@@ -96,8 +96,8 @@ moviefinder/
 
 ## Author
 
-Created by [Your Name](https://github.com/yourusername)
+Created by [Dylan Lewis]
 
 Connect with me:
-- [GitHub](https://github.com/yourusername)
-- [LinkedIn](https://linkedin.com/in/yourusername)
+- [GitHub](https://github.com/dylanlewis12)
+- [LinkedIn](https://www.linkedin.com/in/the-dylanlewis/)
