@@ -1,4 +1,5 @@
 import { loadMovies } from '../data/movieData.js';
+import { initSearch } from './search.js';
 
 let allMovies = [];
 let currentPage = 1;
@@ -7,6 +8,7 @@ const moviesPerPage = 20;
 async function viewCatalog() {
     allMovies = await loadMovies();
     displayPage(1);
+    initSearch(allMovies);  // Initialize search
 }
 
 function displayPage(pageNum) {

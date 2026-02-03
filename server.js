@@ -106,7 +106,7 @@ app.get("/", (req, res) => {
 
 // GET /catalog - Serve the catalog/movies page
 app.get("/catalog", (req, res) => {
-    res.sendFile(new URL("./public/views/catalog.html", import.meta.url).pathname);
+    res.sendFile(new URL("./public/views/index.html", import.meta.url).pathname);
 });
 
 // GET /watchlist - Render the watchlist page with server-side template engine
